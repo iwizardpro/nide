@@ -156,6 +156,10 @@ var UserInterfaceController = function() {
         }
     })
 
+    $('#refresh-files').click(function(e) {
+        connection.refreshFiles()
+    })
+
     $('#remove-file').click(function(e) {
         if (currentFile) {
             var confirmed

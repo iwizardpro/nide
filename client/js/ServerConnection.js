@@ -33,6 +33,10 @@ var ServerConnection = function() {
         });
     })
 
+    this.refreshFiles = function() {
+        socket.emit('refresh');
+    }
+
     this.removeFile = function(path) {
         socket.emit('remove', path)
     }

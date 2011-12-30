@@ -31,7 +31,7 @@ setInterval(function() {
                 date: (new Date()).valueOf(),
                 uuid: generatedUuid
             })
-            exec('cp -- ' + (process.cwd() + file) + ' ' + (process.cwd() + '/.nide/' + generatedUuid), function(err) {
+            exec('cp -- "' + (process.cwd() + file) + '" "' + (process.cwd() + '/.nide/' + generatedUuid) + '"', function(err) {
                 if (!err) {
                     saveVersionHistory()
                 }
@@ -218,6 +218,17 @@ exports.addFolder = function(path) {
         })
     }
     return ee;
+}
+
+exports.refresh = function() {
+    var ee = new EventEmitter()
+    listCache = undefined
+    if(typeof listCache === "undefined") {
+        ee.emit('success')
+    } else {
+        ee.emit('error', 'Unable to clear cache')
+    }
+    return ee
 }
 
 exports.remove = function(path) {
